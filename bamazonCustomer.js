@@ -17,6 +17,7 @@ connection.connect(function(err) {
   start();
 });
 
+// Start the processing
 function start() {
   connection.query("SELECT item_id, product_name, price FROM products", displayChoices);
 }
@@ -77,6 +78,7 @@ displayChoices = function(err, results) {
   });
  }
  
+// Check if the ID entered is a valid ID
 function checkID(itemID){
   connection.query("SELECT count(*) as tcount FROM products WHERE item_id = " + itemID, function verifyID(err, countResults){
     if (err) throw err;
@@ -92,6 +94,7 @@ function checkID(itemID){
   });
 }
 
+// If ID is valid, ask for quantity
 function askForQty(itemID){
   inquirer
   .prompt([
@@ -128,6 +131,7 @@ function askForQty(itemID){
   });
  }
 
+// If valid quantity, check inventory to make sure it is available.
 function checkInventory(itemID, itemQty){
   connection.query("SELECT product_name, price, stock_quantity FROM products WHERE item_id = " + itemID, function checkStock(err, InvResults){
   if (err) throw err;
@@ -145,6 +149,7 @@ function compareInventoryToAskQty(name, Quantity, price, id, qty){
   }
 }
 
+// If the sale is complete, update the database with the new available quantity
 function updateItem(itemID, newQuantity) {
   // Update stock after sale
   connection.query(

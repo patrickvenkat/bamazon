@@ -1,4 +1,4 @@
-<h1>########## bamazon customer app ###########</h1>
+<h1>####### bamazon customer app #######</h1>
 <h2>1. Problem Definition</h2>
    <p>This node and SQL app solves a simple need to buy items available for sale</p>
    <p>a) Display items available for sale</p>
