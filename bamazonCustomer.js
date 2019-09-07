@@ -29,22 +29,19 @@ displayChoices = function(err, results) {
   let choiceArray = [];
   for (let i = 0; i < results.length; i++) {
     let item = {};
-    item.item_id = results[i].item_id;
-    item.product = results[i].product_name;
-    item.price = "$" + results[i].price;
+    item.name = results[i].item_id + "   " + results[i].product_name + "       $ " + results[i].price;
     choiceArray.push(item);    
   }
 
-  console.log(choiceArray);
   // Prompt the user for which item they would like to buy
   inquirer
   .prompt([
-    // {
-    //   name: "choice",
-    //   type: "rawlist",
-    //   choices: choiceArray,
-    //   message: "Which item would you like to buy?"
-    // },
+    {
+      name: "choice",
+      type: "list",
+      choices: choiceArray,
+      message: "Which item would you like to buy?"
+    },
     {
       name: "idOfItem",
       type: "input",
